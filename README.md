@@ -54,5 +54,3 @@ This script utilizes the ply library for lexical analysis and parsing.
 ## Author
 
 Michael DIOP ROGANDJI
-
-Thierry LAGUERRE
