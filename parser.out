@@ -1,0 +1,350 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> expr
+Rule 1     expr -> ATOM
+Rule 2     expr -> LPAREN expr RPAREN
+Rule 3     expr -> NEGATION expr
+Rule 4     expr -> expr AND expr
+Rule 5     expr -> expr OR expr
+Rule 6     expr -> expr IMPLIES expr
+Rule 7     expr -> expr EQUIVALENT expr
+
+Terminals, with rules where they appear
+
+AND                  : 4
+ATOM                 : 1
+EQUIVALENT           : 7
+IMPLIES              : 6
+LPAREN               : 2
+NEGATION             : 3
+OR                   : 5
+RPAREN               : 2
+error                : 
+
+Nonterminals, with rules where they appear
+
+expr                 : 2 3 4 4 5 5 6 6 7 7 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expr
+    (1) expr -> . ATOM
+    (2) expr -> . LPAREN expr RPAREN
+    (3) expr -> . NEGATION expr
+    (4) expr -> . expr AND expr
+    (5) expr -> . expr OR expr
+    (6) expr -> . expr IMPLIES expr
+    (7) expr -> . expr EQUIVALENT expr
+
+    ATOM            shift and go to state 2
+    LPAREN          shift and go to state 3
+    NEGATION        shift and go to state 4
+
+    expr                           shift and go to state 1
+
+state 1
+
+    (0) S' -> expr .
+    (4) expr -> expr . AND expr
+    (5) expr -> expr . OR expr
+    (6) expr -> expr . IMPLIES expr
+    (7) expr -> expr . EQUIVALENT expr
+
+    AND             shift and go to state 5
+    OR              shift and go to state 6
+    IMPLIES         shift and go to state 7
+    EQUIVALENT      shift and go to state 8
+
+
+state 2
+
+    (1) expr -> ATOM .
+
+    AND             reduce using rule 1 (expr -> ATOM .)
+    OR              reduce using rule 1 (expr -> ATOM .)
+    IMPLIES         reduce using rule 1 (expr -> ATOM .)
+    EQUIVALENT      reduce using rule 1 (expr -> ATOM .)
+    $end            reduce using rule 1 (expr -> ATOM .)
+    RPAREN          reduce using rule 1 (expr -> ATOM .)
+
+
+state 3
+
+    (2) expr -> LPAREN . expr RPAREN
+    (1) expr -> . ATOM
+    (2) expr -> . LPAREN expr RPAREN
+    (3) expr -> . NEGATION expr
+    (4) expr -> . expr AND expr
+    (5) expr -> . expr OR expr
+    (6) expr -> . expr IMPLIES expr
+    (7) expr -> . expr EQUIVALENT expr
+
+    ATOM            shift and go to state 2
+    LPAREN          shift and go to state 3
+    NEGATION        shift and go to state 4
+
+    expr                           shift and go to state 9
+
+state 4
+
+    (3) expr -> NEGATION . expr
+    (1) expr -> . ATOM
+    (2) expr -> . LPAREN expr RPAREN
+    (3) expr -> . NEGATION expr
+    (4) expr -> . expr AND expr
+    (5) expr -> . expr OR expr
+    (6) expr -> . expr IMPLIES expr
+    (7) expr -> . expr EQUIVALENT expr
+
+    ATOM            shift and go to state 2
+    LPAREN          shift and go to state 3
+    NEGATION        shift and go to state 4
+
+    expr                           shift and go to state 10
+
+state 5
+
+    (4) expr -> expr AND . expr
+    (1) expr -> . ATOM
+    (2) expr -> . LPAREN expr RPAREN
+    (3) expr -> . NEGATION expr
+    (4) expr -> . expr AND expr
+    (5) expr -> . expr OR expr
+    (6) expr -> . expr IMPLIES expr
+    (7) expr -> . expr EQUIVALENT expr
+
+    ATOM            shift and go to state 2
+    LPAREN          shift and go to state 3
+    NEGATION        shift and go to state 4
+
+    expr                           shift and go to state 11
+
+state 6
+
+    (5) expr -> expr OR . expr
+    (1) expr -> . ATOM
+    (2) expr -> . LPAREN expr RPAREN
+    (3) expr -> . NEGATION expr
+    (4) expr -> . expr AND expr
+    (5) expr -> . expr OR expr
+    (6) expr -> . expr IMPLIES expr
+    (7) expr -> . expr EQUIVALENT expr
+
+    ATOM            shift and go to state 2
+    LPAREN          shift and go to state 3
+    NEGATION        shift and go to state 4
+
+    expr                           shift and go to state 12
+
+state 7
+
+    (6) expr -> expr IMPLIES . expr
+    (1) expr -> . ATOM
+    (2) expr -> . LPAREN expr RPAREN
+    (3) expr -> . NEGATION expr
+    (4) expr -> . expr AND expr
+    (5) expr -> . expr OR expr
+    (6) expr -> . expr IMPLIES expr
+    (7) expr -> . expr EQUIVALENT expr
+
+    ATOM            shift and go to state 2
+    LPAREN          shift and go to state 3
+    NEGATION        shift and go to state 4
+
+    expr                           shift and go to state 13
+
+state 8
+
+    (7) expr -> expr EQUIVALENT . expr
+    (1) expr -> . ATOM
+    (2) expr -> . LPAREN expr RPAREN
+    (3) expr -> . NEGATION expr
+    (4) expr -> . expr AND expr
+    (5) expr -> . expr OR expr
+    (6) expr -> . expr IMPLIES expr
+    (7) expr -> . expr EQUIVALENT expr
+
+    ATOM            shift and go to state 2
+    LPAREN          shift and go to state 3
+    NEGATION        shift and go to state 4
+
+    expr                           shift and go to state 14
+
+state 9
+
+    (2) expr -> LPAREN expr . RPAREN
+    (4) expr -> expr . AND expr
+    (5) expr -> expr . OR expr
+    (6) expr -> expr . IMPLIES expr
+    (7) expr -> expr . EQUIVALENT expr
+
+    RPAREN          shift and go to state 15
+    AND             shift and go to state 5
+    OR              shift and go to state 6
+    IMPLIES         shift and go to state 7
+    EQUIVALENT      shift and go to state 8
+
+
+state 10
+
+    (3) expr -> NEGATION expr .
+    (4) expr -> expr . AND expr
+    (5) expr -> expr . OR expr
+    (6) expr -> expr . IMPLIES expr
+    (7) expr -> expr . EQUIVALENT expr
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for EQUIVALENT resolved as shift
+    $end            reduce using rule 3 (expr -> NEGATION expr .)
+    RPAREN          reduce using rule 3 (expr -> NEGATION expr .)
+    AND             shift and go to state 5
+    OR              shift and go to state 6
+    IMPLIES         shift and go to state 7
+    EQUIVALENT      shift and go to state 8
+
+  ! AND             [ reduce using rule 3 (expr -> NEGATION expr .) ]
+  ! OR              [ reduce using rule 3 (expr -> NEGATION expr .) ]
+  ! IMPLIES         [ reduce using rule 3 (expr -> NEGATION expr .) ]
+  ! EQUIVALENT      [ reduce using rule 3 (expr -> NEGATION expr .) ]
+
+
+state 11
+
+    (4) expr -> expr AND expr .
+    (4) expr -> expr . AND expr
+    (5) expr -> expr . OR expr
+    (6) expr -> expr . IMPLIES expr
+    (7) expr -> expr . EQUIVALENT expr
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for EQUIVALENT resolved as shift
+    $end            reduce using rule 4 (expr -> expr AND expr .)
+    RPAREN          reduce using rule 4 (expr -> expr AND expr .)
+    AND             shift and go to state 5
+    OR              shift and go to state 6
+    IMPLIES         shift and go to state 7
+    EQUIVALENT      shift and go to state 8
+
+  ! AND             [ reduce using rule 4 (expr -> expr AND expr .) ]
+  ! OR              [ reduce using rule 4 (expr -> expr AND expr .) ]
+  ! IMPLIES         [ reduce using rule 4 (expr -> expr AND expr .) ]
+  ! EQUIVALENT      [ reduce using rule 4 (expr -> expr AND expr .) ]
+
+
+state 12
+
+    (5) expr -> expr OR expr .
+    (4) expr -> expr . AND expr
+    (5) expr -> expr . OR expr
+    (6) expr -> expr . IMPLIES expr
+    (7) expr -> expr . EQUIVALENT expr
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for EQUIVALENT resolved as shift
+    $end            reduce using rule 5 (expr -> expr OR expr .)
+    RPAREN          reduce using rule 5 (expr -> expr OR expr .)
+    AND             shift and go to state 5
+    OR              shift and go to state 6
+    IMPLIES         shift and go to state 7
+    EQUIVALENT      shift and go to state 8
+
+  ! AND             [ reduce using rule 5 (expr -> expr OR expr .) ]
+  ! OR              [ reduce using rule 5 (expr -> expr OR expr .) ]
+  ! IMPLIES         [ reduce using rule 5 (expr -> expr OR expr .) ]
+  ! EQUIVALENT      [ reduce using rule 5 (expr -> expr OR expr .) ]
+
+
+state 13
+
+    (6) expr -> expr IMPLIES expr .
+    (4) expr -> expr . AND expr
+    (5) expr -> expr . OR expr
+    (6) expr -> expr . IMPLIES expr
+    (7) expr -> expr . EQUIVALENT expr
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for EQUIVALENT resolved as shift
+    $end            reduce using rule 6 (expr -> expr IMPLIES expr .)
+    RPAREN          reduce using rule 6 (expr -> expr IMPLIES expr .)
+    AND             shift and go to state 5
+    OR              shift and go to state 6
+    IMPLIES         shift and go to state 7
+    EQUIVALENT      shift and go to state 8
+
+  ! AND             [ reduce using rule 6 (expr -> expr IMPLIES expr .) ]
+  ! OR              [ reduce using rule 6 (expr -> expr IMPLIES expr .) ]
+  ! IMPLIES         [ reduce using rule 6 (expr -> expr IMPLIES expr .) ]
+  ! EQUIVALENT      [ reduce using rule 6 (expr -> expr IMPLIES expr .) ]
+
+
+state 14
+
+    (7) expr -> expr EQUIVALENT expr .
+    (4) expr -> expr . AND expr
+    (5) expr -> expr . OR expr
+    (6) expr -> expr . IMPLIES expr
+    (7) expr -> expr . EQUIVALENT expr
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for EQUIVALENT resolved as shift
+    $end            reduce using rule 7 (expr -> expr EQUIVALENT expr .)
+    RPAREN          reduce using rule 7 (expr -> expr EQUIVALENT expr .)
+    AND             shift and go to state 5
+    OR              shift and go to state 6
+    IMPLIES         shift and go to state 7
+    EQUIVALENT      shift and go to state 8
+
+  ! AND             [ reduce using rule 7 (expr -> expr EQUIVALENT expr .) ]
+  ! OR              [ reduce using rule 7 (expr -> expr EQUIVALENT expr .) ]
+  ! IMPLIES         [ reduce using rule 7 (expr -> expr EQUIVALENT expr .) ]
+  ! EQUIVALENT      [ reduce using rule 7 (expr -> expr EQUIVALENT expr .) ]
+
+
+state 15
+
+    (2) expr -> LPAREN expr RPAREN .
+
+    AND             reduce using rule 2 (expr -> LPAREN expr RPAREN .)
+    OR              reduce using rule 2 (expr -> LPAREN expr RPAREN .)
+    IMPLIES         reduce using rule 2 (expr -> LPAREN expr RPAREN .)
+    EQUIVALENT      reduce using rule 2 (expr -> LPAREN expr RPAREN .)
+    $end            reduce using rule 2 (expr -> LPAREN expr RPAREN .)
+    RPAREN          reduce using rule 2 (expr -> LPAREN expr RPAREN .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for AND in state 10 resolved as shift
+WARNING: shift/reduce conflict for OR in state 10 resolved as shift
+WARNING: shift/reduce conflict for IMPLIES in state 10 resolved as shift
+WARNING: shift/reduce conflict for EQUIVALENT in state 10 resolved as shift
+WARNING: shift/reduce conflict for AND in state 11 resolved as shift
+WARNING: shift/reduce conflict for OR in state 11 resolved as shift
+WARNING: shift/reduce conflict for IMPLIES in state 11 resolved as shift
+WARNING: shift/reduce conflict for EQUIVALENT in state 11 resolved as shift
+WARNING: shift/reduce conflict for AND in state 12 resolved as shift
+WARNING: shift/reduce conflict for OR in state 12 resolved as shift
+WARNING: shift/reduce conflict for IMPLIES in state 12 resolved as shift
+WARNING: shift/reduce conflict for EQUIVALENT in state 12 resolved as shift
+WARNING: shift/reduce conflict for AND in state 13 resolved as shift
+WARNING: shift/reduce conflict for OR in state 13 resolved as shift
+WARNING: shift/reduce conflict for IMPLIES in state 13 resolved as shift
+WARNING: shift/reduce conflict for EQUIVALENT in state 13 resolved as shift
+WARNING: shift/reduce conflict for AND in state 14 resolved as shift
+WARNING: shift/reduce conflict for OR in state 14 resolved as shift
+WARNING: shift/reduce conflict for IMPLIES in state 14 resolved as shift
+WARNING: shift/reduce conflict for EQUIVALENT in state 14 resolved as shift
