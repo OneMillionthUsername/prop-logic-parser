@@ -75,7 +75,8 @@ parser = yacc()
 
 # Evaluates the formula returns a boolean
 def evaluate_formula(formula, variables):
-    if isinstance(formula, str):  # # if it's an atom
+    print(f"Evaluating formula: {formula}")  # Debugging-Ausgabe
+    if isinstance(formula, str):  # if it's an atom
         return variables.get(formula, False)
     elif isinstance(formula, bool):  # if it's already evaluated
         return formula
@@ -85,8 +86,10 @@ def evaluate_formula(formula, variables):
         return evaluate_formula(formula[1], variables) and evaluate_formula(formula[2], variables)
     elif formula[0] == '|':  # # if it's OR 
         return evaluate_formula(formula[1], variables) or evaluate_formula(formula[2], variables)
+    elif formula[0] == '->':  # if it's IMPLIES
+        return evaluate_formula(formula[1], variables) or evaluate_formula(formula[2], variables)
     else:
-        raise ValueError("Formule non reconnue")
+        raise ValueError("Unrecognized formula")
 
 # Lists all existing variables
 def get_all_variables(formula):
@@ -99,6 +102,8 @@ def get_all_variables(formula):
     elif formula[0] == '&':  
         return get_all_variables(formula[1]).union(get_all_variables(formula[2]))
     elif formula[0] == '|':  
+        return get_all_variables(formula[1]).union(get_all_variables(formula[2]))
+    elif formula[0] == '->':  
         return get_all_variables(formula[1]).union(get_all_variables(formula[2]))
     else:
         raise ValueError("Formule non reconnue")
@@ -131,11 +136,12 @@ def parse_propositional_formula(formula):
 if __name__ == "__main__":
     # EX 1 
     parsed_formula = parse_propositional_formula(formula)
+    print(f"Parsed formula: {parsed_formula}")  # Debugging-Ausgabe
     variables = get_all_variables(parsed_formula)
-    print("Recognized formula",parsed_formula)
+    print("Recognized formula", parsed_formula)
     # EX 2 
     print("Variable in the truth table", variables)
-    if is_satisfiable_for_all_assignments(parsed_formula,list(variables)) :
+    if is_satisfiable_for_all_assignments(parsed_formula, list(variables)):
         print("The formula is satisfiable")
-    else :
+    else:
         print("The formula is unsatisfiable")
